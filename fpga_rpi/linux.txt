@@ -1,0 +1,9 @@
+# 1. Compile C extension
+gcc -O3 -shared -fPIC -o rpi5_gpio.so rpi5_gpio_driver.c
+
+# 2. Run with root (required for GPIO mmap)
+sudo python3 rpi5_fpga_controller.py
+
+# 3. For production, setup udev rules to avoid sudo
+# /etc/udev/rules.d/99-gpio.rules:
+# SUBSYSTEM=="bcm2835-gpiomem", GROUP="gpio", MODE="0660"
